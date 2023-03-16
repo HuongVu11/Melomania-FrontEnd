@@ -18,7 +18,7 @@ function SongShow (props) {
             <img src={song.img} alt={song.title}/>
             <p>Artist: {song.artist}</p>
             <p>Album: {song.album}</p>
-            <a href="https://www.youtube.com/watch?v=Xc0_zxvZ5Lw">Listen</a>
+            <a href={song.link}>Listen</a>
             <div>
                 <Link to={`/song/${id}/update`}>
                     <button>
