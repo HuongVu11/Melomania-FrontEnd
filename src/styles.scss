@@ -1,0 +1,42 @@
+// -------------------------
+// CSS VARIABLES
+// -------------------------
+$maincolor: black;
+$contrastcolor: white;
+
+@mixin white-text-black-bg {
+    color: $contrastcolor;
+    background-color: $maincolor;
+}
+  
+@mixin black-text-white-bg {
+    color: $maincolor;
+    background-color: $contrastcolor;
+}
+
+// -------------------------
+// HEADER
+// -------------------------
+nav {
+    @include white-text-black-bg;
+    display: flex;
+    justify-content: flex-start;
+    a {
+        @include white-text-black-bg;
+        margin: 1.5em;
+        font-size: large;
+    }
+}
+.SongIndex {
+    margin: 2em;
+    display: flex;
+    flex-direction: row;
+    img {
+        width: 10%;
+        margin: 1em;
+    }
+    a {
+        text-decoration: none;
+        color: black;
+    }
+}
