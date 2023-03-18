@@ -33,7 +33,7 @@ function SongCreate (props) {
     }
 
     return (
-        <div>
+        <div className='container'>
             <h1>Add new song</h1>
             <form onSubmit={handleSubmit}>
                 <input

@@ -15,17 +15,19 @@ function SongShow (props) {
     return (
         <div className="container"> 
             <h1>{song.title}</h1>
-            <img src={song.img} alt={song.title}/>
+            <div style={{width: 50 + 'vw'}}>
+                <img src={song.image} alt={song.title} className="img-fluid p-5"/>
+            </div>
             <p>Artist: {song.artist}</p>
             <p>Album: {song.album}</p>
-            <a href={song.link}>Listen</a>
+            <a href={song.link} className="badge badge-info">Listen</a>
             <div>
                 <Link to={`/song/${id}/update`}>
-                    <button>
+                    <button className="btn btn-secondary m-1">
                         EDIT
                     </button>
                 </Link>
-                <button id='delete' onClick={handleDelete}>
+                <button id='delete' onClick={handleDelete} className="btn btn-secondary m-1" >
                     DELETE
                 </button>
             </div>

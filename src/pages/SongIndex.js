@@ -4,10 +4,14 @@ function SongIndex (props) {
     const Loaded = () => {
         return props.song.map((song) => (
             <div key={song._id} className='SongIndex'>
-                <img src={song.image} alt={song.title} />
-                <Link to={`/song/${song._id}`}>
-                    <h1>{song.title}</h1>
-                </Link>
+                <div>
+                    <img src={song.image} alt={song.title} />   
+                </div>
+                <div>
+                    <Link to={`/song/${song._id}`}>
+                        <h3>{song.title}</h3>
+                    </Link>
+                </div>
             </div>
         ))
     }
@@ -18,7 +22,9 @@ function SongIndex (props) {
     return (
         <div className="container">
             <h1>Song List</h1>
-            {props.song ? <Loaded /> : <Loading />}
+            <div className="my-3">
+                {props.song ? <Loaded /> : <Loading />}
+            </div>
         </div>
     )
 }

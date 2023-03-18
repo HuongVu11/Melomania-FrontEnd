@@ -23,7 +23,7 @@ function SongUpdate (props) {
     }
 
     return (
-        <div>
+        <div className='container'>
             <h1>Update</h1>
             <form onSubmit={handleSubmit}>
                 <input
