@@ -8,26 +8,35 @@ function SongCreate (props) {
         artist: '',
         album: '',
         image: '',
-        link: ''
     })
-
+    const [link, setLink] = useState('')
+    
     const handleChange = (e) => {
         setNewForm(prev => ({
             ...prev,
             [e.target.name]: e.target.value
         }))
     }
+    const handleLinkChange = (e) => {
+        setLink(e.target.files[0])
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(newForm)
-        props.createSong(newForm)
+        const formData = props.formData
+        formData.append('title',newForm.title)
+        formData.append('artist',newForm.artist)
+        formData.append('album',newForm.album)
+        formData.append('image',newForm.image)
+        formData.append('link',link)
+        console.log(formData)
+        props.createSong(formData)
         setNewForm({
             title: '',
             artist: '',
             album: '',
             image: '',
-            link: ''
         })
         navigate('/')
     }
@@ -35,7 +44,7 @@ function SongCreate (props) {
     return (
         <div className='container'>
             <h1>Add new song</h1>
-            <form onSubmit={handleSubmit}>
+            <form encType="multipart/form-data" onSubmit={handleSubmit}>
                 <input
                     type='text'
                     value={newForm.title}
@@ -65,11 +74,9 @@ function SongCreate (props) {
                     onChange={handleChange}
                 />
                 <input
-                    type='text'
-                    value={newForm.link}
-                    name='link'
+                    type='file'
                     placeholder='link'
-                    onChange={handleChange}
+                    onChange={handleLinkChange}
                 />
                 <input type='submit' value='Add new' />
             </form>
