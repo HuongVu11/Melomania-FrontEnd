@@ -8,6 +8,7 @@ function SongUpdate (props) {
     const song = songData.find((s)=> s._id === id)
   
     const [editForm, setEditForm] = useState(song)
+    const [link, setLink] = useState('')
 
     const handleChange = (e) => {
         setEditForm(prev => ({
@@ -16,16 +17,30 @@ function SongUpdate (props) {
         }))
     }
     
+    const handleLinkChange = (e) => {
+        if (e.target.files[0]) {
+            setLink(e.target.files[0])
+        } else {
+            setLink(editForm.link)
+        }
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        props.updateSong(editForm, id)
+        const formData = props.formData
+        formData.append('title',editForm.title)
+        formData.append('artist',editForm.artist)
+        formData.append('album',editForm.album)
+        formData.append('image',editForm.image)
+        formData.append('link',link)
+        props.updateSong(formData, id)
         navigate('/')
     }
 
     return (
         <div className='container'>
             <h1>Update</h1>
-            <form onSubmit={handleSubmit}>
+            <form encType="multipart/form-data" onSubmit={handleSubmit}>
                 <input
                     type='text'
                     value={editForm.title}
@@ -55,11 +70,9 @@ function SongUpdate (props) {
                     onChange={handleChange}
                 />
                 <input
-                    type='text'
-                    value={editForm.link}
-                    name='link'
+                    type='file'
                     placeholder='link'
-                    onChange={handleChange}
+                    onChange={handleLinkChange}
                 />
                 <input type='submit' value='Update' />
             </form>

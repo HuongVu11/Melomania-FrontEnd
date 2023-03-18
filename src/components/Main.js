@@ -10,6 +10,7 @@ const URL = "http://localhost:4000/songs"
 function Main () {
 
     const [song,setSong] = useState([])
+    const formData = new FormData()
 
     const getSong = async () => {
         const response = await fetch(URL)
@@ -20,10 +21,7 @@ function Main () {
     const createSong = async (song) => {
         await fetch(URL, {
             method: 'post',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(song)
+            body: song
         })
         getSong()
     }
@@ -31,10 +29,7 @@ function Main () {
     const updateSong = async (song, id) =>{
         await fetch(`${URL}/${id}`, {
             method: 'put',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(song)
+            body: song
         })
         getSong()
     }
@@ -62,11 +57,13 @@ function Main () {
                 <Route path='/song/create' element={
                     <SongCreate 
                         createSong={createSong} 
+                        formData = {formData}
                     />
                 } />
                 <Route path='/song/:id' element={
                     <SongShow 
-                        song={song} 
+                        song={song}
+                        URL = {URL}
                         deleteSong={deleteSong}
                     />
                 }/>
@@ -74,6 +71,7 @@ function Main () {
                     <SongUpdate
                         song={song} 
                         updateSong={updateSong} 
+                        formData={formData}
                     />
                 } />
             </Routes>
