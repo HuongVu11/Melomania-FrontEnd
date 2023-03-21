@@ -1,32 +1,26 @@
-import React, { useState } from 'react'
-
+import React, { useContext, useState } from 'react'
+import { Navigate } from 'react-router-dom';
 import axios from 'axios'
+import LoginForm from './LoginForm'
+import NewUserForm from './NewUserForm'
+import UserContext from '../context/UserContext';
 
-function User() {
+const URL = 'http://localhost:4000'
+
+function User(props) {
+  const {isAuth, currentUser, setCurrentUser, toggleLogout, handleToggleLogout} = useContext(UserContext)
   const [toggleLogin, setToggleLogin] = useState(true)
   const [toggleError, setToggleError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const [toggleLogout, setToggleLogout] = useState(false)
-  const [currentUser, setCurrentUser] = useState({})
 
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-
-  const handleCreateUser = (event) => {
-    event.preventDefault()
-    event.currentTarget.reset()
-    let userObj = {
-      username: username,
-      password: password
-    }
-    setUsername('')
-    setPassword('')
-    axios.post('http://localhost:4000/createaccount', userObj).then((response) => {
+  const handleCreateUser = (userObj) => {
+    axios.post(`${URL}/createaccount`, userObj).then((response) => {
       if(response.data.username){
         console.log(response);
         setToggleError(false)
         setErrorMessage('')
         setCurrentUser(response.data)
+        isAuth()
         handleToggleLogout()
       } else {
         setErrorMessage(response.data)
@@ -35,21 +29,15 @@ function User() {
     })
   }
 
-  const handleLogin = (event) => {
-    event.preventDefault()
-    event.currentTarget.reset()
-    let userObj = {
-      username: username,
-      password: password
-    }
-    setUsername('')
-    setPassword('')
-    axios.put('http://localhost:4000/login', userObj).then((response) => {
+  const handleLogin = (userObj) => {
+    //console.log(userObj);
+    axios.put(`${URL}/login`, userObj).then((response) => {
       if(response.data.username){
         console.log(response);
         setToggleError(false)
         setErrorMessage('')
         setCurrentUser(response.data)
+        isAuth()
         handleToggleLogout()
       } else {
         console.log(response);
@@ -57,11 +45,6 @@ function User() {
         setErrorMessage(response.data)
       }
     })
-  }
-
-  const handleLogout = () => {
-    setCurrentUser({})
-    handleToggleLogout()
   }
 
   const handleToggleForm = () => {
@@ -73,66 +56,28 @@ function User() {
     }
   }
 
-  const handleToggleLogout = () => {
-    if(toggleLogout) {
-      setToggleLogout(false)
-    } else {
-      setToggleLogout(true)
-    }
-  }
-
   return (
-    <div className="User">
+    <div className="App">
+
       <div>
         {toggleLogout ?
-          <button onClick={handleLogout} class='logoutBtn'>Logout</button> :
-          <div class='appFormDiv'>
+          // Move Logout button to Nav
+          // <button onClick={handleLogout} className='logoutBtn'>Logout</button> :
+          null:
+          <div className='container'>
             {toggleLogin ?
-              //login form
-              <div className="formContainer">
-                <h1 class='formTitle'>Login</h1>
-                <form onSubmit={handleLogin} class='inputForm'>
-                  <input type='text' placeholder='username' class='textInput' onChange={(event)=> {setUsername(event.target.value)}}/>
-                  <input type='password' placeholder='password' class='textInput' onChange={(event)=> {setPassword(event.target.value)}}/>
-                  {toggleError ?
-                    <h5 class='errorMsg'>{errorMessage}</h5>
-                    :
-                    null
-                  }
-                  <input type='submit' value='Login' class='submitBtn'/>
-                </form>
-              </div>
+            <LoginForm handleLogin={handleLogin} toggleError={toggleError} errorMessage={errorMessage}/>
             :
-            // new user form
-            <div className="User" class='formContainer'>
-              <h1 class='formTitle'>Create an Account</h1>
-              <form onSubmit={handleCreateUser} class='inputForm'>
-                <input type='text' placeholder='username' class='textInput' onChange={(event)=> {setUsername(event.target.value)}}/>
-                <input type='password' placeholder='password' class='textInput' onChange={(event)=> {setPassword(event.target.value)}}/>
-                {toggleError ?
-                  <h5 class='errorMsg'>{errorMessage}</h5>
-                  :
-                  null
-                }
-                <input type='submit' value='Register' class='submitBtn'/>
-              </form>
-            </div>
+            <NewUserForm handleCreateUser={handleCreateUser} toggleError={toggleError} errorMessage={errorMessage}/>
             }
-            <button onClick={handleToggleForm} class='accountBtn'>{toggleLogin ? 'Need an account?' : 'Already have an account?'}</button>
+            <button onClick={handleToggleForm} className="btn btn-secondary m-1">{toggleLogin ? 'Need an account?' : 'Already have an account?'}</button>
           </div>
         }
-
-
       </div>
-      {currentUser.username ?
-        <div class='loggedInDiv'>
-          <h1>user is currently logged in</h1>
-        </div>
-        :
-        null
-      }
-    </div>
-  );
-}
 
-export default User;
+      {currentUser.username ? <Navigate to='/' /> : null}
+
+    </div>
+  )}
+  
+  export default User

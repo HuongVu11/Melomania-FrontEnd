@@ -77,6 +77,7 @@ function SongCreate (props) {
                     type='file'
                     placeholder='link'
                     onChange={handleLinkChange}
+                    required
                 />
                 <input type='submit' value='Add new' />
             </form>
