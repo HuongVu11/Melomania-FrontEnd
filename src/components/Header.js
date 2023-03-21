@@ -3,9 +3,7 @@ import { useContext } from 'react'
 import UserContext from '../context/UserContext'
 
 function Header() {
-    //const {isAuthenticated, isAuth, notAuth, currentUser, toggleLogout, handleLogout, handleToggleLogout} = useContext(UserContext)
     const { currentUser, handleLogout} = useContext(UserContext)
-    //console.log(currentUser)
     return (
         <>
             {currentUser.username ?
