@@ -11,7 +11,7 @@ function SongShow (props) {
         props.deleteSong(id)
         Navigate('/')
     }
-    const URL = `${props.URL}/${id}`
+    const URL = `${props.URL}/songs/${id}`
 
     useEffect(() => {
         const getaSong = async () => {
