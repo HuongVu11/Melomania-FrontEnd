@@ -85,7 +85,7 @@ function User() {
     <div className="User">
       <div>
         {toggleLogout ?
-          <button onClick={handleLogout} class='logoutBtn'>Logout</button> :
+          <button onClick={handleLogout} className='logoutBtn'>Logout</button> :
           <div class='appFormDiv'>
             {toggleLogin ?
               //login form
