@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Navigate } from 'react-router-dom';
+import { Navigate , useLocation } from 'react-router-dom';
 import axios from 'axios'
 import LoginForm from './LoginForm'
 import NewUserForm from './NewUserForm'
@@ -12,6 +12,7 @@ function User(props) {
   const [toggleLogin, setToggleLogin] = useState(true)
   const [toggleError, setToggleError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
+  const {state} = useLocation()
 
   const handleCreateUser = (userObj) => {
     axios.post(`${URL}/createaccount`, userObj).then((response) => {
@@ -75,7 +76,9 @@ function User(props) {
         }
       </div>
 
-      {currentUser.username ? <Navigate to='/' /> : null}
+      {/* {currentUser.username &&  state.prev ? <Navigate to={state.prev} /> : null} */}
+      {currentUser.username ? <Navigate to='/song' /> : null}
+
 
     </div>
   )}

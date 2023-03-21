@@ -77,7 +77,7 @@ function Main (props) {
                             deleteSong={deleteSong}
                         />
                         :
-                        <Navigate to='/user' />
+                        <Navigate to='/user' state={{prev:'/song'}}/>
                 }/>
                 <Route path='/song/:id/update' element={
                     isAuthenticated ? 
