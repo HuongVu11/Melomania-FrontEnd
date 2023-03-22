@@ -1,18 +1,19 @@
 import React, { useContext, useState } from 'react'
-import { Navigate , useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+//import { Navigate , useLocation } from 'react-router-dom';
 import axios from 'axios'
 import LoginForm from './LoginForm'
 import NewUserForm from './NewUserForm'
 import UserContext from '../context/UserContext';
 
-const URL = 'http://localhost:4000'
+const URL = 'https://melomania-adh.herokuapp.com'
 
 function User(props) {
   const {isAuth, currentUser, setCurrentUser, toggleLogout, handleToggleLogout} = useContext(UserContext)
   const [toggleLogin, setToggleLogin] = useState(true)
   const [toggleError, setToggleError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const {state} = useLocation()
+  //const {state} = useLocation()
 
   const handleCreateUser = (userObj) => {
     axios.post(`${URL}/createaccount`, userObj).then((response) => {
@@ -34,7 +35,6 @@ function User(props) {
     //console.log(userObj);
     axios.put(`${URL}/login`, userObj).then((response) => {
       if(response.data.username){
-        console.log(response);
         setToggleError(false)
         setErrorMessage('')
         setCurrentUser(response.data)
@@ -58,7 +58,7 @@ function User(props) {
   }
 
   return (
-    <div className="App">
+    <div className="container">
 
       <div>
         {toggleLogout ?

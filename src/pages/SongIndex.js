@@ -21,7 +21,7 @@ function SongIndex (props) {
     }
     return (
         <div className="container1">
-            <h1>Song List</h1>
+            <h1 className="mt-3">Song List</h1>
             <div className="my-3">
                 {props.song ? <Loaded /> : <Loading />}
             </div>

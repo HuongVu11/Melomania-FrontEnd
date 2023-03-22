@@ -9,7 +9,7 @@ import User from "./User";
 import { useContext } from 'react'
 import UserContext from '../context/UserContext'
 
-const URL = 'http://localhost:4000'
+const URL = 'https://melomania-adh.herokuapp.com'
 
 function Main (props) {
 
