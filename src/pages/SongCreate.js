@@ -38,7 +38,7 @@ function SongCreate (props) {
             album: '',
             image: '',
         })
-        navigate('/')
+        navigate('/song')
     }
 
     return (

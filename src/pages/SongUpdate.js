@@ -34,7 +34,7 @@ function SongUpdate (props) {
         formData.append('image',editForm.image)
         formData.append('link',link)
         props.updateSong(formData, id)
-        navigate('/')
+        navigate('/song')
     }
 
     return (
