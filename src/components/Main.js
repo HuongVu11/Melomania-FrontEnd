@@ -9,7 +9,7 @@ import User from "./User";
 import { useContext } from 'react'
 import UserContext from '../context/UserContext'
 
-const URL = 'https://melomania-adh.herokuapp.com'
+const URL = 'https://melomania-adh.herokuapp.com/'
 
 function Main (props) {
 
@@ -17,13 +17,13 @@ function Main (props) {
     const [song,setSong] = useState([])
     const formData = new FormData()
     const getSong = async () => {
-        const response = await fetch(`${URL}/songs`)
+        const response = await fetch(`${URL}songs`)
         const data = await response.json()
         setSong(data)
     };
 
     const createSong = async (song) => {
-        await fetch(`${URL}/songs`, {
+        await fetch(`${URL}songs`, {
             method: 'post',
             body: song
         })
@@ -31,7 +31,7 @@ function Main (props) {
     }
 
     const updateSong = async (song, id) =>{
-        await fetch(`${URL}/songs/${id}`, {
+        await fetch(`${URL}songs/${id}`, {
             method: 'put',
             body: song
         })
@@ -39,7 +39,7 @@ function Main (props) {
     }
 
     const deleteSong = async (id) => {
-        await fetch(`${URL}/songs/${id}`, {
+        await fetch(`${URL}songs/${id}`, {
           method: 'delete'
         })
         getSong()
@@ -52,15 +52,16 @@ function Main (props) {
     return (
         <main>
             <Routes>
-                <Route path='/' element={
+                <Route exact path='/' element={
                     <Home />
                 }/>
-                <Route path='/song' element={
+                <Route exact path='/song' element={
                     <SongIndex 
-                        song={song} 
+                        song={song}
+                        getSong={getSong}
                     />
                 }/>
-                <Route path='/song/create' element={
+                <Route exact path='/song/create' element={
                     isAuthenticated ? 
                         <SongCreate 
                             createSong={createSong} 
@@ -69,7 +70,7 @@ function Main (props) {
                         :
                         <Navigate to='/user' />
                 }/>
-                <Route path='/song/:id' element={
+                <Route exact path='/song/:id' element={
                     isAuthenticated ? 
                         <SongShow 
                             song={song}
@@ -79,7 +80,7 @@ function Main (props) {
                         :
                         <Navigate to='/user' state={{prev:'/song'}}/>
                 }/>
-                <Route path='/song/:id/update' element={
+                <Route exact path='/song/:id/update' element={
                     isAuthenticated ? 
                         <SongUpdate
                             song={song} 
@@ -89,7 +90,7 @@ function Main (props) {
                         :
                         <Navigate to='/user' />
                 }/>
-                <Route path='/user' element={
+                <Route exact path='/user' element={
                     <User 
                         isAuth={isAuth}
                         notAuth={notAuth}
