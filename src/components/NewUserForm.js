@@ -15,7 +15,7 @@ function App(props) {
   }
 
   return (
-    <div className='container'>
+    <div className='container2'>
       <h1>Create an Account</h1>
       <form onSubmit={triggerCreateUser} className='inputForm'>
         <input type='text' placeholder='username' onChange={(event)=> {setUsername(event.target.value)}}/>

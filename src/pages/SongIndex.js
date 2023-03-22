@@ -20,7 +20,7 @@ function SongIndex (props) {
         return <h1>Loading...</h1>
     }
     return (
-        <div className="container">
+        <div className="container1">
             <h1>Song List</h1>
             <div className="my-3">
                 {props.song ? <Loaded /> : <Loading />}
