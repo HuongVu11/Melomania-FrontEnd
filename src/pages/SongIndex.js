@@ -8,11 +8,11 @@ function SongIndex (props) {
     const [asc, setAscen] = useState(true)
     const [column, setColumn] = useState({name: 'image'})
 
-    // const getSong = async () => {
-    //     const response = await fetch(`https://melomania-adh.herokuapp.com/songs`)
-    //     const data = await response.json()
-    //     setSongs(data)
-    // };
+    const getSong = async () => {
+        const response = await fetch(`https://melomania-adh.herokuapp.com/songs`)
+        const data = await response.json()
+        setSongs(data)
+    };
 
     const sortByTitle = () => {
         setColumn({name: 'song'})
@@ -107,9 +107,9 @@ function SongIndex (props) {
         return <h1>Loading...</h1>
     }
 
-    // useEffect(() => {
-    //     getSong()
-    // }, [])
+    useEffect(() => {
+        getSong()
+    }, [])
 
     return (
         <div className="container1">
