@@ -9,7 +9,7 @@ import User from "./User";
 import { useContext } from 'react'
 import UserContext from '../context/UserContext'
 
-const URL = 'https://melomania-adh.herokuapp.com/'
+const URL = 'https://melomania-adh.herokuapp.com'
 
 function Main (props) {
 
@@ -17,13 +17,13 @@ function Main (props) {
     const [song,setSong] = useState([])
     const formData = new FormData()
     const getSong = async () => {
-        const response = await fetch(`${URL}songs`)
+        const response = await fetch(`${URL}/songs`)
         const data = await response.json()
         setSong(data)
     };
 
     const createSong = async (song) => {
-        await fetch(`${URL}songs`, {
+        await fetch(`${URL}/songs`, {
             method: 'post',
             body: song
         })
@@ -31,7 +31,7 @@ function Main (props) {
     }
 
     const updateSong = async (song, id) =>{
-        await fetch(`${URL}songs/${id}`, {
+        await fetch(`${URL}/songs/${id}`, {
             method: 'put',
             body: song
         })
@@ -39,7 +39,7 @@ function Main (props) {
     }
 
     const deleteSong = async (id) => {
-        await fetch(`${URL}songs/${id}`, {
+        await fetch(`${URL}/songs/${id}`, {
           method: 'delete'
         })
         getSong()
