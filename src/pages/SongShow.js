@@ -23,7 +23,6 @@ function SongShow (props) {
         getaSong();
       }, [URL]);
 
-
     const Loaded = () => {
         return (
             <div className="container"> 

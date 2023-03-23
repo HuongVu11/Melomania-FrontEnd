@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import SongIndex from "../pages/SongIndex";
 import SongShow from "../pages/SongShow";
@@ -96,7 +96,7 @@ function Main (props) {
                         />}
                     />
                     <Route path="/song/:id" element={
-                        <Navigate to="/user" />
+                        <User />
                     }/>
                     <Route path="/user" element={<User />} />
                 </Routes>

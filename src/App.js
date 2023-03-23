@@ -39,7 +39,7 @@ function App() {
     if (isLoggedIn === 'true') {
       isAuth();
     }
-    console.log(isAuthenticated, 'isAuthenticated)')
+    //console.log(isAuthenticated, 'isAuthenticated)')
   }, [isAuthenticated]);
   
   return (
