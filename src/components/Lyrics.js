@@ -22,13 +22,16 @@ function Lyrics (props) {
 
     const Loading = () => {
         return (
-            <div className="mt-3">Loading...</div>
+            <>
+                <div className='mt-3'>Loading...</div>
+                <div className='loader'></div>
+            </>
         )
     }
 
     const Loaded = () => {
         return (
-            <div className="mt-3">
+            <div className='mt-3'>
                 {lyrics.split('\n').map((line, index) => (
                     <div key={index}>{line}</div>
                 ))}

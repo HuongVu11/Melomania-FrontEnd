@@ -12,10 +12,10 @@ import UserContext from '../context/UserContext'
 const URL = 'https://melomania-adh.herokuapp.com'
 
 function Main (props) {
-
-    const {isAuthenticated, isAuth, notAuth} = useContext(UserContext)
+    const {isAuthenticated} = useContext(UserContext)
     const [song,setSong] = useState([])
     const formData = new FormData()
+
     const getSong = async () => {
         const response = await fetch(`${URL}/songs`)
         const data = await response.json()
@@ -23,12 +23,18 @@ function Main (props) {
     };
 
     const createSong = async (song) => {
-        await fetch(`${URL}/songs`, {
-            method: 'post',
-            body: song
-        })
-        getSong()
-    }
+        try {
+            const newSongData =  await fetch(`${URL}/songs`, {
+                method: 'post',
+                body: song
+            })
+          const newSong = await newSongData.json()
+          // add the new song to the existing list
+          setSong(prevSongs => [...prevSongs, newSong])
+        } catch (error) {
+          console.log(error)
+        }
+    }  
 
     const updateSong = async (song, id) =>{
         await fetch(`${URL}/songs/${id}`, {
@@ -49,56 +55,55 @@ function Main (props) {
         getSong()
     }, [])
 
+
     return (
         <main>
-            <Routes>
-                <Route exact path='/' element={
-                    <Home />
-                }/>
-                <Route exact path='/song' element={
-                    <SongIndex 
-                        song={song}
-                        getSong={getSong}
-                    />
-                }/>
-                <Route exact path='/song/create' element={
-                    isAuthenticated ? 
+            {isAuthenticated ? (
+                <Routes>
+                    <Route exact path="/" element={<Home />} />
+                    <Route exact path="/song" element={
+                        <SongIndex song={song} 
+                            getSong={getSong} />
+                    }/>
+                    <Route exact path="/song/create" element={
                         <SongCreate 
                             createSong={createSong} 
-                            formData = {formData}
-                        />
-                        :
-                        <Navigate to='/user' />
-                }/>
-                <Route exact path='/song/:id' element={
-                    isAuthenticated ? 
+                            formData={formData} />
+                    }/>
+                    <Route exact path="/song/:id" element={
                         <SongShow 
-                            song={song}
-                            URL = {URL}
-                            deleteSong={deleteSong}
-                        />
-                        :
-                        <Navigate to='/user' state={{prev:'/song'}}/>
-                }/>
-                <Route exact path='/song/:id/update' element={
-                    isAuthenticated ? 
-                        <SongUpdate
                             song={song} 
-                            updateSong={updateSong} 
-                            formData={formData}
-                        />
-                        :
-                        <Navigate to='/user' />
-                }/>
-                <Route exact path='/user' element={
-                    <User 
-                        isAuth={isAuth}
-                        notAuth={notAuth}
+                            URL={URL} 
+                            deleteSong={deleteSong} />
+                    }/>
+                    <Route exact path="/song/:id/update" element={
+                        <SongUpdate 
+                            song={song} 
+                            updateSong={updateSong}
+                            formData={formData}/>
+                    }/>
+                    <Route path="/user" element={
+                        <User />
+                    }/>
+                </Routes>
+            ) : (
+                <Routes>
+                    <Route exact path="/" element={<Home />} />
+                    <Route exact path="/song" element={
+                        <SongIndex 
+                            song={song} 
+                            getSong={getSong} 
+                        />}
                     />
-                }/>
-            </Routes> 
+                    <Route path="/song/:id" element={
+                        <Navigate to="/user" />
+                    }/>
+                    <Route path="/user" element={<User />} />
+                </Routes>
+            )}
         </main>
-    )
+    );
+
 }
 
 export default Main

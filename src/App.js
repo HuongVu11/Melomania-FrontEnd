@@ -2,7 +2,7 @@ import './App.css';
 import Header from './components/Header';
 import Main from './components/Main';
 import UserContext from './context/UserContext';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
   
@@ -20,6 +20,7 @@ function App() {
   const handleLogout = () => {
     notAuth()
     setCurrentUser({})
+    localStorage.setItem('isLoggedIn', false)
     handleToggleLogout()
   }
 
@@ -31,6 +32,14 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (isLoggedIn === 'true') {
+      isAuth();
+    }
+    console.log(isAuthenticated, 'isAuthenticated)')
+  }, [isAuthenticated]);
+  
   return (
 
     <UserContext.Provider value={{isAuthenticated, isAuth, notAuth, currentUser, setCurrentUser, toggleLogout, handleLogout, handleToggleLogout}}>

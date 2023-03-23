@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 function SongCreate (props) {
     const navigate = useNavigate()
+    const [isSubmitting, setIsSubmitting] = useState(false)
     const [newForm, setNewForm] = useState({
         title: '',
         artist: '',
@@ -21,8 +22,9 @@ function SongCreate (props) {
         setLink(e.target.files[0])
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        setIsSubmitting(true)
         console.log(newForm)
         const formData = props.formData
         formData.append('title',newForm.title)
@@ -30,21 +32,31 @@ function SongCreate (props) {
         formData.append('album',newForm.album)
         formData.append('image',newForm.image)
         formData.append('link',link)
-        console.log(formData)
-        props.createSong(formData)
-        setNewForm({
-            title: '',
-            artist: '',
-            album: '',
-            image: '',
-        })
-        navigate('/song')
+        try {
+            // eslint-disable-next-line
+            const response = await props.createSong(formData);
+            setNewForm({
+              title: "",
+              artist: "",
+              album: "",
+              image: "",
+            })
+            setIsSubmitting(false)
+            navigate('/song')
+        } catch (error) {
+            console.log(error)
+            setIsSubmitting(false)
+        }
     }
 
     return (
         <div className='container'>
             <h1>Add new song</h1>
-            <form encType="multipart/form-data" onSubmit={handleSubmit}>
+            {isSubmitting ? 
+                (<div className='loader'></div>)
+                :
+                (
+                <form encType="multipart/form-data" onSubmit={handleSubmit}>
                 <input
                     type='text'
                     value={newForm.title}
@@ -81,6 +93,9 @@ function SongCreate (props) {
                 />
                 <input type='submit' value='Add new' className="submitBtn"/>
             </form>
+                )
+            }
+            
         </div>
     )
 }

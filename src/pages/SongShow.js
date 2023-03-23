@@ -50,7 +50,7 @@ function SongShow (props) {
     }
 
     const Loading = () => {
-        return <h1>Loading...</h1>;
+        return <div className='loader'></div>
     };
 
     return song?  <Loaded /> : <Loading />

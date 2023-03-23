@@ -3,10 +3,10 @@ import { useContext } from 'react'
 import UserContext from '../context/UserContext'
 
 function Header() {
-    const { currentUser, handleLogout} = useContext(UserContext)
+    const { isAuthenticated, handleLogout} = useContext(UserContext)
     return (
         <>
-            {currentUser.username ?
+            {isAuthenticated ?
                 <nav>
                     <Link to='/'>Melomania</Link>
                     <Link to='/song'>Songs</Link>
