@@ -3,9 +3,10 @@ import Header from './components/Header';
 import Main from './components/Main';
 import UserContext from './context/UserContext';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
-  
+  const navigate= useNavigate()
   const [currentUser, setCurrentUser] = useState({})
   const [toggleLogout, setToggleLogout] = useState(false)
   const [isAuthenticated, setIsAuthenticated]=useState(false)
@@ -22,6 +23,7 @@ function App() {
     setCurrentUser({})
     localStorage.setItem('isLoggedIn', false)
     handleToggleLogout()
+    navigate('/')
   }
 
   const handleToggleLogout = () => {
