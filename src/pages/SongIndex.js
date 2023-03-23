@@ -19,12 +19,7 @@ function SongIndex (props) {
         const songsSorted = [...songs].sort((a, b) => {
             const itemA = a.title.toUpperCase()
             const itemB = b.title.toUpperCase()
-            if (itemA < itemB) {
-                return -1;
-            }
-            if (itemA > itemB) {
-                return 1;
-            }
+            return itemA.localeCompare(itemB)
         })
         if (asc) {
             setSongs(songsSorted)
@@ -41,12 +36,7 @@ function SongIndex (props) {
         const songsSorted = [...songs].sort((a, b) => {
             const nameA = a.artist.toUpperCase()
             const nameB = b.artist.toUpperCase()
-            if (nameA < nameB) {
-              return -1;
-            }
-            if (nameA > nameB) {
-              return 1;
-            }
+            return nameA.localeCompare(nameB)
          })
          if (asc) {
             setSongs(songsSorted)
@@ -112,7 +102,7 @@ function SongIndex (props) {
     }, [])
 
     return (
-        <div className="container1">
+        <div className="container">
             <h1 className="mt-3">Song List</h1>
             <div className="my-3">
                 {props.song ? <Loaded /> : <Loading />}

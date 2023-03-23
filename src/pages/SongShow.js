@@ -5,12 +5,12 @@ import Lyrics from "../components/Lyrics"
 
 function SongShow (props) {
     const {id} = useParams()
-    const Navigate = useNavigate()
+    const navigate = useNavigate()
     
     const [song, setSong] = useState(null)
     const handleDelete = () => {
         props.deleteSong(id)
-        Navigate('/')
+        navigate('/song')
     }
     const URL = `${props.URL}/songs/${id}`
 

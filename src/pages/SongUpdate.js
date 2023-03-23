@@ -74,7 +74,7 @@ function SongUpdate (props) {
                     placeholder='link'
                     onChange={handleLinkChange}
                 />
-                <input type='submit' value='Update' />
+                <input type='submit' value='Update' className="submitBtn"/>
             </form>
         </div>
     )

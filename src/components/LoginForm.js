@@ -19,8 +19,8 @@ function App(props) {
     <div className="container">
       <h1 className='formTitle'>Login</h1>
       <form onSubmit={triggerLogin} className='inputForm'>
-        <input type='text' placeholder='username' className='textInput' onChange={(event)=> {setUsername(event.target.value)}}/>
-        <input type='password' placeholder='password' className='textInput' onChange={(event)=> {setPassword(event.target.value)}}/>
+        <input type='text' placeholder='username' onChange={(event)=> {setUsername(event.target.value)}}/>
+        <input type='password' placeholder='password' onChange={(event)=> {setPassword(event.target.value)}}/>
         {props.toggleError ?
           <h5 className='errorMsg'>{props.errorMessage}</h5>
           :

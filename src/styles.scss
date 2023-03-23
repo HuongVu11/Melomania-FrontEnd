@@ -38,19 +38,14 @@ nav {
 // -------------------------
 
 
-.App {
-  
-}
-
-
 .container {
     margin-top: 2em;
-    padding: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+// SONG INDEX PAGE
 .SongIndex {
     margin: 2em;
     display: flex;
@@ -69,15 +64,36 @@ nav {
     }
 }
 
+table {
+    text-transform: capitalize;
+    th {
+        margin: 3em;
+        padding: 1em;
+    }
+    img {
+        width: 50px;
+    }
+    td {
+        padding: 1em;
+        text-align: left;
+    }
+    a {
+        text-decoration: none;
+        color: black;
+    }
+}
 
 // FORM
 form {
-    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
     margin: 1em;
     input {
-        width: 100%;
+        width: 300px;
         padding: 1em;
-        margin: 1em 0;
+        margin-top: 1em;
         border: 0;
         border-radius: 1em;
         box-sizing: border-box;
@@ -86,7 +102,7 @@ form {
         padding-left: 2em;
     }
     input[type=submit] {
-        width: 50%0%;
+        width: 250px;
     }
 }
 .errorMsg {
@@ -105,13 +121,38 @@ form {
     font-size: 1em;
     cursor: pointer;
 }
-
 .submitBtn:hover {
     filter: drop-shadow(0 2px 2px white);
 }
 
-.container{
-    background-image: url("https://thumbs.gfycat.com/AcclaimedHeartfeltGoat-max-1mb.gif");
-    background-size: 101%;
+// HOMEPAGE
+.containerImage {
+    position: relative;
+    //background-image: url("https://thumbs.gfycat.com/AcclaimedHeartfeltGoat-max-1mb.gif");
+    //background-size: 100%;
+    height: 100vh;
+    background-image: url("https://media.tenor.com/_ghn0Sr3fh0AAAAd/music.gif");
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
+}
+.containerImage::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.homeContainer {
+    position: relative;
+}
+.home {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    line-height: 2;
 }
