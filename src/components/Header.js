@@ -16,6 +16,9 @@ function Header() {
                 :
                 <nav>
                     <Link to='/'>Melomania</Link>
+                    <Link to='/artist'>
+                        Artists
+                    </Link>
                     <Link to='/song'>Songs</Link>
                     <Link to='/user'>Sign in</Link>
                 </nav>
