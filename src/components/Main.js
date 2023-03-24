@@ -8,6 +8,8 @@ import SongUpdate from "../pages/SongUpdate";
 import User from "./User";
 import { useContext } from 'react'
 import UserContext from '../context/UserContext'
+import ArtistShow from "../pages/ArtistIndex";
+import ArtistIndex from "../pages/ArtistIndex";
 
 const URL = 'https://melomania-adh.herokuapp.com'
 
@@ -97,6 +99,9 @@ function Main (props) {
                     />
                     <Route path="/song/:id" element={
                         <User />
+                    }/>
+                    <Route path="/artist" element={
+                        <ArtistIndex URL={URL}/>
                     }/>
                     <Route path="/user" element={<User />} />
                 </Routes>
