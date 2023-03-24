@@ -26,10 +26,15 @@ nav {
         margin: 1.5em;
         font-size: large;
         text-decoration: none;
+        
+    }
+    a:hover {
+        box-shadow: 0 18px 16px 0 rgba(216, 26, 219, 0.975);
     }
     div {
         margin: 1.5em;
         font-size: large;
+        
     }
 }
 
@@ -148,6 +153,7 @@ form {
 }
 .homeContainer {
     position: relative;
+    
 }
 .home {
     position: absolute;
@@ -156,7 +162,10 @@ form {
     transform: translate(-50%, -50%);
     color: white;
     line-height: 2;
+    
 }
+
+
 
 .loader {
     margin-top: 20vh;
