@@ -84,6 +84,9 @@ function Main (props) {
                             updateSong={updateSong}
                             formData={formData}/>
                     }/>
+                    <Route path="/artist" element={
+                        <ArtistIndex URL={URL}/>
+                    }/>
                     <Route path="/user" element={
                         <User />
                     }/>
@@ -105,6 +108,8 @@ function Main (props) {
                     }/>
                     <Route path="/user" element={<User />} />
                 </Routes>
+                
+
             )}
         </main>
     );

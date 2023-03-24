@@ -71,13 +71,13 @@ function SongIndex (props) {
                 <thead>
                     <tr>
                         <th></th>
-                        <th onClick={sortByTitle}>Song 
+                        <th className='sortHeader' onClick={sortByTitle}>Song 
                             {column.name === 'song' ? 
                                 (asc ? <BsSortAlphaUpAlt/> : <BsSortAlphaUp/>) 
                                 : <BsList/>
                             }
                         </th>
-                        <th onClick={sortByArtist}>Artist
+                        <th className='sortHeader' onClick={sortByArtist}>Artist
                             {column.name === 'artist' ? 
                                 (asc ? <BsSortAlphaUpAlt/> : <BsSortAlphaUp/>) 
                                 : <BsList/>

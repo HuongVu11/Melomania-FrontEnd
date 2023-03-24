@@ -5,10 +5,10 @@ const ArtistIndex = (props) => {
     const [artists, setArtists] = useState(null)
 
     const getArtistsData = async () => {
-      const response = await fetch (`${props.URL}/artists`)
-      const data = await response.json()
-    console.log(data)
-      setArtists(data)
+        const response = await fetch (`${props.URL}/artists`)
+        const data = await response.json()
+        // console.log(data)
+        setArtists(data)
     }
     useEffect(()=> {
       getArtistsData()
@@ -16,11 +16,11 @@ const ArtistIndex = (props) => {
 
     const loaded = () => {
       return artists.map((artist)=> (
-        <div className="artist">
+        <div key={artist._id} className="artist">
+          <img className="artistImage" src ={artist.image}/>
           <h1>{artist.name}</h1>
-          <img src ={artist.image}/>
           <h2>Albums: {artist.nb_album}</h2>
-          <h2>Fans: {artist.nb_fan}</h2>
+          <h2>Fans: {artist.nb_fan.toLocaleString('en-US')}</h2>
         </div>
       ))
     }
@@ -29,7 +29,11 @@ const ArtistIndex = (props) => {
       return <h1>Loading...</h1>
     }
 
-    return artists ? loaded() : loading()
+    return (
+        <div className="artistContainer">
+            {artists ? loaded() : loading()}
+        </div>
+    )
   }
 
 export default ArtistIndex
