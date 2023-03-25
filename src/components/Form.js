@@ -1,7 +1,6 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 
 const Form = (props) => {
-
   const [search, setSearch] = useState('')
 
   const onChangeText = (e) => {
@@ -13,13 +12,13 @@ const Form = (props) => {
     const response = await fetch(
         `https://melomania-adh.herokuapp.com/search?title=${title}`
     );
-    console.log(response)
+    //console.log(response)
     // Parse JSON response into a javascript object
     const data = await response.json();
-    console.log(data)
+    //console.log(data)
     //set the Song state to the Song
-    props.setSongs(data);
-    console.log(data)
+     props.setSongs(data);
+    //console.log(data)
   };
 
 
@@ -27,20 +26,28 @@ const Form = (props) => {
     e.preventDefault()
     getSearch(search)
   }
-
+  
+  const clearAll = () => {
+    props.getSong()
+  }
 
   return (
-    <div className="container">
-      <form onSubmit={handleSearch}>
+    <div className='searchFormCtn'>
+      <form className="searchForm" onSubmit={handleSearch}>
         <input 
           onChange={onChangeText} 
           title='searchTitle'
-          type='text' 
+          type='text'
+          placeholder='Search by title'
           value={search} 
         />
-        <input type='submit' value='search' />
+        <input className="ms-2" type='submit' value='Search' />
       </form>
-      </div>
+      {/* <form className="searchForm" >
+        <input className="ms-2" type='submit' onSubmit={clearAll} value='Clear All' />
+      </form> */}
+      <button className="clearBtn" onClick={clearAll}>Clear All</button>
+    </div>
   )
 }
 

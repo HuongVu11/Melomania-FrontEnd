@@ -16,9 +16,9 @@ function App(props) {
 
 
   return (
-    <div className="container">
+    <div className="ctn">
       <h1 className='formTitle'>Login</h1>
-      <form onSubmit={triggerLogin} className='inputForm'>
+      <form className='form' onSubmit={triggerLogin}>
         <input type='text' placeholder='username' onChange={(event)=> {setUsername(event.target.value)}}/>
         <input type='password' placeholder='password' onChange={(event)=> {setPassword(event.target.value)}}/>
         {props.toggleError ?

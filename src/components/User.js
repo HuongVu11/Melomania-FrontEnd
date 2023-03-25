@@ -61,14 +61,14 @@ function User(props) {
   }
 
   return (
-    <div className="container">
+    <div className="ctn">
 
       {toggleLogin ?
         <LoginForm handleLogin={handleLogin} toggleError={toggleError} errorMessage={errorMessage}/>
         :
         <NewUserForm handleCreateUser={handleCreateUser} toggleError={toggleError} errorMessage={errorMessage}/>
       }
-      <button onClick={handleToggleForm} className="btn btn-secondary m-1">{toggleLogin ? 'Need an account?' : 'Already have an account?'}</button>
+      <button onClick={handleToggleForm} className="btn btn-secondary py-2">{toggleLogin ? 'Need an account?' : 'Already have an account?'}</button>
 
     </div>
   )}

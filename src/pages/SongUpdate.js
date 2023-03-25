@@ -38,9 +38,9 @@ function SongUpdate (props) {
     }
 
     return (
-        <div className='container'>
+        <div className='ctn'>
             <h1>Update</h1>
-            <form encType="multipart/form-data" onSubmit={handleSubmit}>
+            <form className='form' encType="multipart/form-data" onSubmit={handleSubmit}>
                 <input
                     type='text'
                     value={editForm.title}

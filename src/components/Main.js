@@ -110,12 +110,11 @@ function Main (props) {
                         <ArtistIndex URL={URL}/>
                     }/>
                     <Route path="/artist/:id" element={
-                        <ArtistShow URL={URL}/>
+                        <User />
                     }/>
                     <Route path="/user" element={<User />} />
                 </Routes>
                 
-
             )}
         </main>
     );

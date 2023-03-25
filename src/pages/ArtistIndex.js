@@ -13,13 +13,14 @@ const ArtistIndex = (props) => {
     }
     useEffect(()=> {
       getArtistsData()
+      // eslint-disable-next-line
     }, [])
 
     const loaded = () => {
       return artists.map((artist)=> (
         <div key={artist._id} className="artist">
             <Link to={`/artist/${artist._id}`}>
-                <img className="artistImage" src ={artist.image}/>
+                <img className="artistImage" alt={artist.name} src ={artist.image}/>
             </Link>
           <h1>{artist.name}</h1>
           <h2>Albums: {artist.nb_album}</h2>

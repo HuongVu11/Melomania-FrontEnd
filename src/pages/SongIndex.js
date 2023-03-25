@@ -103,13 +103,13 @@ function SongIndex (props) {
     }, [])
 
     return (
-        <div className="container">
-            <Form setSongs={setSongs}/>
-            <h1 className="mt-3">Song List</h1>
-            <div className="my-3">
+        <div className="ctn">
+            <Form getSong={getSong} setSongs={setSongs}/>
+            <div className="ctn">
                 {props.song ? <Loaded /> : <Loading />}
             </div>
-        </div>
+        </div> 
+
     )
 }
 

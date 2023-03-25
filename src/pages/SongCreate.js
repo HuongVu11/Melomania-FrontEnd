@@ -50,13 +50,13 @@ function SongCreate (props) {
     }
 
     return (
-        <div className='container'>
+        <div className='ctn'>
             <h1>Add new song</h1>
             {isSubmitting ? 
                 (<div className='loader'></div>)
                 :
                 (
-                <form encType="multipart/form-data" onSubmit={handleSubmit}>
+                <form className='form' encType="multipart/form-data" onSubmit={handleSubmit}>
                 <input
                     type='text'
                     value={newForm.title}

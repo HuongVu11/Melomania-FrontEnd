@@ -25,7 +25,7 @@ function SongShow (props) {
 
     const Loaded = () => {
         return (
-            <div className="container"> 
+            <div className="ctn"> 
                 <h1 className="songTitle">{song.title}</h1>
                 <div style={{width: 50 + 'vw'}}>
                     <img src={song.image} alt={song.title} className="img-fluid p-5"/>
@@ -50,7 +50,7 @@ function SongShow (props) {
 
     const Loading = () => {
         return (
-            <div className="container">
+            <div className="ctn">
                 <div className='loader'></div>
             </div>
         )

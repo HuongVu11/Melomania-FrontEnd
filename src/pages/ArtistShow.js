@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import {useState, useEffect} from 'react'
 import { useParams } from "react-router-dom"
 
@@ -10,15 +9,14 @@ function ArtistShow (props) {
     const getArtistsData = async () => {
         const response = await fetch (`${props.URL}/artists/${id}`)
         const data = await response.json()
-        // console.log(data)
         setArtist(data)
     }
 
     const ArtistSongs = () => {
         return artist.songs.map(song => (
             <div key={song._id} className='artistSong'>
-                <p>{song.title}</p>
-                <audio controls src={song.link}></audio>
+                <p className="gridItem">{song.title}</p>
+                <audio className="gridItem" controls src={song.link}></audio>
             </div>
         ))
     }
@@ -31,18 +29,16 @@ function ArtistShow (props) {
 
     const Loaded = () => {
         return ( 
-            <div className="container">
-                <h1>{artist.name}</h1>
-                <h2>Albums: {artist.nb_album}</h2>
-                <h2>Fans: {artist.nb_fan.toLocaleString('en-US')}</h2>
+            <div className="ctn">
+                <h1 className="my-3">{artist.name}</h1>
                 <img src={artist.image} alt={artist.title} className="img-fluid p-5"/>
-                <ArtistSongs />
+                    <ArtistSongs />
             </div>
         )
     }
-
     useEffect(()=> {
         getArtistsData()
+        // eslint-disable-next-line
       }, [])
 
     return artist ? <Loaded /> : <Loading />
