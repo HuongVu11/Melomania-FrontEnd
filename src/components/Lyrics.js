@@ -11,10 +11,10 @@ function Lyrics (props) {
                 if (props.song.artist === json.artist || props.song.artist === json.author) {
                     setLyrics(json.lyrics)
                 } else {
-                    setLyrics('lyrics is not available')
+                    setLyrics(`Lyrics aren't available for this song.`)
                 }
             } catch (error) {
-                setLyrics('lyrics is not available')
+                setLyrics(`Lyrics aren't available for this song.`)
             }
         }
         getLyrics()
@@ -23,7 +23,7 @@ function Lyrics (props) {
     const Loading = () => {
         return (
             <>
-                <div className='mt-3'>Loading...</div>
+                <div className='mt-5'>Loading...</div>
                 <div className='loader'></div>
             </>
         )

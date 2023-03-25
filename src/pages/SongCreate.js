@@ -63,6 +63,7 @@ function SongCreate (props) {
                     name='title'
                     placeholder='title'
                     onChange={handleChange}
+                    required
                 />
                 <input
                     type='text'

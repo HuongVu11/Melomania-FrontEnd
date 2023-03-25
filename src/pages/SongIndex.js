@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { BsSortAlphaUpAlt, BsSortAlphaUp, BsList } from "react-icons/bs";
+import Form from "../components/Form";
 
 function SongIndex (props) {
 
@@ -103,6 +104,7 @@ function SongIndex (props) {
 
     return (
         <div className="container">
+            <Form setSongs={setSongs}/>
             <h1 className="mt-3">Song List</h1>
             <div className="my-3">
                 {props.song ? <Loaded /> : <Loading />}
