@@ -41,11 +41,8 @@ const Form = (props) => {
           placeholder='Search by title'
           value={search} 
         />
-        <input className="ms-2" type='submit' value='Search' />
+        <input className="searchInput" type='submit' value='Search' />
       </form>
-      {/* <form className="searchForm" >
-        <input className="ms-2" type='submit' onSubmit={clearAll} value='Clear All' />
-      </form> */}
       <button className="clearBtn" onClick={clearAll}>Clear All</button>
     </div>
   )

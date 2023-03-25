@@ -110,6 +110,7 @@ table {
         margin: 3em 0;
         padding: 1em;
         font-size: 25px;
+        text-align: left;
     }
     tr:hover{
         background-color: #f6f2ff;
@@ -192,7 +193,7 @@ p {
         flex-direction: row;
         justify-content: center;
         input {
-            width: 300px;
+            width: 30vw;
             border: 0;
             border-radius: 1em;
             box-sizing: border-box;
@@ -201,7 +202,7 @@ p {
             padding: 1em 2em;
         }
         input[type=submit] {
-            width: 100px;
+            width: 80px;
             padding: 0 0;
             margin: 0 1em;
             font-weight: 600;
@@ -214,7 +215,7 @@ p {
 .clearBtn{
     margin: 0;
     padding: 0;
-    width: 100px;
+    width: 80px;
     border: 0;
     border-radius: 1em;
     box-sizing: border-box;
