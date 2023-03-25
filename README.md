@@ -2,7 +2,7 @@
 
 Full-stack application (an Express API and a separate React frontend) with full CRUD and the MERN stack: Node.js, Mongoose, Express and React.
 
-## `Link to the project site`
+## Link to the project site
 
 https://melomania-adh.netlify.app/
 
