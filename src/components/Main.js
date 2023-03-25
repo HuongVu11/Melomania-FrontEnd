@@ -87,6 +87,9 @@ function Main (props) {
                     <Route path="/artist" element={
                         <ArtistIndex URL={URL}/>
                     }/>
+                    <Route path="/artist" element={
+                        <ArtistIndex URL={URL}/>
+                    }/>
                     <Route path="/user" element={
                         <User />
                     }/>
